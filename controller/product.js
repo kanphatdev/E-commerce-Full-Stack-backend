@@ -1,5 +1,5 @@
 const prisma = require("../config/prisma");
-
+const cloudinary =require ("cloudinary").v2;
 exports.create = async (req, res) => {
   try {
     const { title, description, price, quantity, categoryId, images } =
@@ -232,12 +232,17 @@ exports.searchFilters = async (req, res) => {
     res.status(500).json({ message: "server error" });
   }
 };
+cloudinary.config({ 
+  cloud_name: process.env.CLOUD_NAME, 
+  api_key: process.env.API_KEY, 
+  api_secret: process.env.API_SECRET // Click 'View API Keys' above to copy your API secret
+});
 exports.createImages = async (req, res) => {
     try {
         //code
         // console.log(req.body)
         const result = await cloudinary.uploader.upload(req.body.image, {
-            public_id: `Roitai-${Date.now()}`,
+            public_id: `Akatsuki-${Date.now()}`,
             resource_type: 'auto',
             folder: 'Ecom2024'
         })

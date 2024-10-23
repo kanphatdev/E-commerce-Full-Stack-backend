@@ -11,7 +11,7 @@ const app = express();
 // Use middlewares
 app.use(morgan('dev')); // Morgan for logging
 app.use(cors()); // CORS to handle cross-origin requests
-app.use(express.json()); // To parse incoming JSON requests
+app.use(express.json({limit:"20mb"})); // To parse incoming JSON requests
 
 // Automatically load all routes in the "routes" folder
 fs.readdirSync(path.join(__dirname, 'routes')).forEach((file) => {
